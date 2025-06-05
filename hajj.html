@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عيدنا معاكم - معلومات عن الحج</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        body {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        html[lang="ar"] {
+            direction: rtl;
+        }
+
+        html[lang="en"] {
+            direction: ltr;
+        }
+
+        /* Light Mode */
+        body.light-mode {
+            background-color: #F5E6CC;
+            color: #4A3728;
+        }
+
+        body.light-mode .header, body.light-mode footer, body.light-mode .content-section {
+            background-color: #FFF8E7;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        body.light-mode .dropdown-content, body.light-mode .sidebar {
+            background-color: #FFF8E7;
+        }
+
+        body.light-mode .dropdown-content a, body.light-mode .sidebar a {
+            color: #4A3728;
+        }
+
+        body.light-mode .content-section h1 {
+            color: #4A3728;
+            font-size: 3.5rem;
+        }
+
+        body.light-mode .content-section p {
+            color: #4682B4;
+        }
+
+        body.light-mode .cta-btn {
+            background-color: #D4AF37;
+            color: #4A3728;
+        }
+
+        body.light-mode .header-title-circle {
+            background-color: #D4AF37;
+        }
+
+        body.light-mode .header-title {
+            color: #4A3728;
+            font-size: 1.5rem;
+        }
+
+        /* Dark Mode */
+        body.dark-mode {
+            background-color: #1A2526;
+            color: #F5F5DC;
+        }
+
+        body.dark-mode .header, body.dark-mode footer, body.dark-mode .content-section {
+            background-color: #2F3B3C;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        body.dark-mode .dropdown-content, body.dark-mode .sidebar {
+            background-color: #2F3B3C;
+        }
+
+        body.dark-mode .dropdown-content a, body.dark-mode .sidebar a {
+            color: #F5F5DC;
+        }
+
+        body.dark-mode .content-section h1 {
+            color: #F5F5DC;
+            font-size: 3.5rem;
+        }
+
+        body.dark-mode .content-section p {
+            color: #87CEEB;
+        }
+
+        body.dark-mode .cta-btn {
+            background-color: #E8C872;
+            color: #1A2526;
+        }
+
+        body.dark-mode .header-title-circle {
+            background-color: #E8C872;
+        }
+
+        body.dark-mode .header-title {
+            color: #F5F5DC;
+            font-size: 1.5rem;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-title-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: float 4s ease-in-out infinite;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .header-title-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .header-title {
+            transition: all 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .header-title:hover {
+            box-shadow: 0 0 15px rgba(232, 200, 114, 0.7);
+            background-color: rgba(232, 200, 114, 0.1);
+        }
+
+        .egypt-flag {
+            display: inline-block;
+            margin-right: 5px;
+            vertical-align: middle;
+            width: 32px;
+            height: 24px;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); box-shadow: 0 0 15px rgba(255, 215, 0, 0.5); }
+            50% { transform: translateY(-10px); box-shadow: 0 0 25px rgba(255, 215, 0, 0.8); }
+        }
+
+        /* Sidebar */
+        .sidebar-container {
+            position: relative;
+        }
+
+        .sidebar-toggle {
+            cursor: pointer;
+            font-size: 2rem;
+            padding: 10px;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 110px;
+            right: 0;
+            width: 250px;
+            height: calc(100% - 110px);
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+            z-index: 900;
+            border-radius: 0 10px 10px 0;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            overflow-y: auto;
+        }
+
+        .sidebar.active {
+            transform: translateX(0);
+        }
+
+        .sidebar a {
+            padding: 15px 20px;
+            text-decoration: none;
+            display: block;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            text-align: right;
+        }
+
+        html[lang="en"] .sidebar a {
+            text-align: left;
+        }
+
+        .sidebar a:hover {
+            background-color: #D4AF37;
+            color: #4A3728;
+        }
+
+        .dark-mode .sidebar a:hover {
+            background-color: #E8C872;
+            color: #1A2526;
+        }
+
+        .sidebar a.active {
+            background-color: rgba(232, 200, 114, 0.3);
+            font-weight: bold;
+        }
+
+        /* Settings */
+        .settings-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        html[lang="en"] .settings-container {
+            right: auto;
+            left: 20px;
+        }
+
+        .settings {
+            cursor: pointer;
+            font-size: 1.8rem;
+            padding: 10px;
+            display: inline-block;
+            background-color: #D4AF37;
+            color: #4A3728;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .dark-mode .settings {
+            background-color: #E8C872;
+            color: #1A2526;
+        }
+
+        .settings:hover {
+            transform: scale(1.1);
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            min-width: 180px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            border-radius: 5px;
+            transform: translateY(-100%);
+            margin-bottom: 10px;
+        }
+
+        html[lang="ar"] .dropdown-content {
+            right: 0;
+            left: auto;
+        }
+
+        html[lang="en"] .dropdown-content {
+            left: 0;
+            right: auto;
+        }
+
+        .dropdown-content a {
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        html[lang="ar"] .dropdown-content a {
+            text-align: right;
+        }
+
+        html[lang="en"] .dropdown-content a {
+            text-align: left;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #D4AF37;
+            color: #4A3728;
+        }
+
+        .dark-mode .dropdown-content a:hover {
+            background-color: #E8C872;
+            color: #1A2526;
+        }
+
+        .dropdown:hover .dropdown-content,
+        .dropdown-content:hover {
+            display: block;
+        }
+
+        .content-section {
+            margin: 30px;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .content-section h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .content-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+            color: #E8C872;
+        }
+
+        .content-section p {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .pillar {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: rgba(232, 200, 114, 0.1);
+            text-align: right;
+        }
+
+        html[lang="en"] .pillar {
+            text-align: left;
+        }
+
+        .pillar h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #E8C872;
+        }
+
+        .pillar .emoji {
+            font-size: 1.5em;
+            margin-left: 5px;
+            vertical-align: middle;
+        }
+
+        html[lang="en"] .pillar .emoji {
+            margin-left: 0;
+            margin-right: 5px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            width: 100%;
+            font-size: 1.2rem;
+        }
+
+        .ar-content {
+            display: block;
+        }
+
+        .en-content {
+            display: none;
+        }
+
+        html[lang="en"] .ar-content {
+            display: none;
+        }
+
+        html[lang="en"] .en-content {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .content-section h1 {
+                font-size: 2.5rem;
+            }
+            .content-section p {
+                font-size: 1.2rem;
+            }
+            .header-title-circle {
+                width: 70px;
+                height: 70px;
+            }
+            .header-title {
+                font-size: 1.2rem;
+            }
+            .content-section h2 {
+                font-size: 2rem;
+            }
+            .content-section h3 {
+                font-size: 1.5rem;
+            }
+            .content-section p {
+                font-size: 1.1rem;
+            }
+            .dropdown-content, .sidebar {
+                min-width: 180px;
+            }
+            .egypt-flag {
+                width: 28px;
+                height: 21px;
+            }
+            .sidebar {
+                top: 90px;
+                height: calc(100% - 90px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .content-section h1 {
+                font-size: 2rem;
+            }
+            .content-section p {
+                font-size: 1rem;
+            }
+            .header-title-circle {
+                width: 60px;
+                height: 60px;
+            }
+            .header-title {
+                font-size: 1rem;
+            }
+            .content-section h2 {
+                font-size: 1.5rem;
+            }
+            .content-section h3 {
+                font-size: 1.3rem;
+            }
+            .content-section p {
+                font-size: 1rem;
+            }
+            .dropdown-content, .sidebar {
+                min-width: 160px;
+            }
+            .egypt-flag {
+                width: 24px;
+                height: 18px;
+            }
+            .sidebar {
+                width: 200px;
+                top: 80px;
+                height: calc(100% - 80px);
+            }
+            .dropdown-content {
+                min-width: 140px;
+            }
+        }
+    </style>
+</head>
+<body class="dark-mode">
+    <!-- Header -->
+    <header class="header">
+        <div class="header-logo">
+            <div class="header-title-circle">
+                <img src="logo_2.jpg" alt="عيدنا معاكم" onerror="this.src='fallback-logo.png';">
+            </div>
+            <div class="header-title">
+                <span class="ar-content">عيدنا معاكم</span>
+                <span class="en-content">Eid with You</span>
+            </div>
+        </div>
+        <div class="sidebar-container">
+            <div class="sidebar-toggle" role="button" aria-label="Toggle Sidebar" tabindex="0">
+                <span>☰</span>
+            </div>
+            <div class="sidebar">
+              <div class="ar-content">
+                  <a href="index.html">الصفحة الرئيسية</a>
+                  <a href="prayers.html" class="active">أدعية العيد</a>
+                  <a href="hajj.html">معلومات عن الحج</a>
+                  <a href="sacrifice.html">شروط الأضحية</a>
+                  <a href="https://e3rafbaladak.com/">المبادرة</a>
+              </div>
+              <div class="en-content">
+                  <a href="index.html">Home</a>
+                  <a href="prayers.html" class="active">Eid Prayers</a>
+                  <a href="hajj.html">Hajj Information</a>
+                  <a href="sacrifice.html">Sacrifice Conditions</a>
+                  <a href="https://e3rafbaladak.com/">Initiative</a>
+              </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Settings -->
+    <div class="settings-container">
+        <div class="dropdown">
+            <div class="settings" role="button" aria-label="Open Settings Menu" tabindex="0">
+                <span>⚙️</span>
+            </div>
+            <div class="dropdown-content">
+                <a href="#" onclick="toggleMode(event)">تبديل إلى Light Mode</a>
+                <a href="#" onclick="toggleLanguage(event)">تبديل إلى الإنجليزي</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hajj Pillars Section -->
+    <section class="content-section">
+        <h1 class="ar-content">أركان الحج الأربعة 🕋</h1>
+        <h1 class="en-content">The Four Pillars of Hajj 🕋</h1>
+        <p class="ar-content">أركان الحج زي "أربعة مفاتيح"، لو واحد منهم ناقص، الحج مش هيبقى صحيح. لازم كل ركن يتعمل بدقة عشان الحج يكون مقبول.</p>
+        <p class="en-content">The pillars of Hajj are like "four keys"—if one is missing, the Hajj is not valid. Each pillar must be performed carefully for the Hajj to be accepted.</p>
+
+        <div class="pillar ar-content">
+            <h3>1. الإحرام 🌟</h3>
+            <p><strong>يعني إيه؟</strong> الإحرام مش مجرد لبس أبيض وخلاص، ده نية إننا دخلنا في عبادة الحج وهنبدأ رحلة خاصة جدًا لربنا.</p>
+            <p><strong>🧒 نقول للطفل:</strong> "لما تلبس لبس الإحرام، كأنك بتقول لربنا: يا رب أنا جاي أزورك وأعمل الحج ليك وبس."</p>
+            <p><strong>✅ بيبدأ منين؟</strong> من مكان اسمه الميقات، وهناك بيقولوا: "لبيك اللهم حجًا".</p>
+        </div>
+        <div class="pillar en-content">
+            <h3>1. Ihram 🌟</h3>
+            <p><strong>What does it mean?</strong> Ihram is not just wearing white clothes; it’s the intention to enter the sacred state of Hajj, starting a very special journey for Allah.</p>
+            <p><strong>🧒 To a child:</strong> "When you wear the Ihram clothes, it’s like telling Allah: O Allah, I’m coming to visit You and perform Hajj just for You."</p>
+            <p><strong>✅ Where does it start?</strong> From a place called the Miqat, where pilgrims say: "Labbayk Allahumma Hajjan" (Here I am, O Allah, for Hajj).</p>
+        </div>
+
+        <div class="pillar ar-content">
+            <h3>2. الوقوف بعرفة 🌟</h3>
+            <p><strong>يعني إيه؟</strong> ده أهم ركن في الحج! لازم الحاج يكون موجود في يوم 9 ذي الحجة في مكان اسمه عرفات، من بعد الظهر لحد المغرب.</p>
+            <p><strong>🧒 نقول للطفل:</strong> "ده زي يوم كبير نقعد فيه ندعي لربنا، ونسامح الناس ونطلب السماح، وربنا بيغفر للناس كتير جدًا فيه."</p>
+            <p><strong>⏰ ملاحظة:</strong> اللي ميقفش في عرفات، حجه مش مقبول، حتى لو عمل كل حاجة تانية.</p>
+        </div>
+        <div class="pillar en-content">
+            <h3>2. Standing at Arafat 🌟</h3>
+            <p><strong>What does it mean?</strong> This is the most important pillar of Hajj! Pilgrims must be present on the 9th of Dhul-Hijjah at a place called Arafat, from noon until sunset.</p>
+            <p><strong>🧒 To a child:</strong> "It’s like a big day where we pray to Allah, forgive others, and ask for forgiveness, and Allah forgives so many people on this day."</p>
+            <p><strong>⏰ Note:</strong> If someone does not stand at Arafat, their Hajj is not valid, even if they do everything else.</p>
+        </div>
+
+        <div class="pillar ar-content">
+            <h3>3. الطواف 🌟</h3>
+            <p><strong>يعني إيه؟</strong> هو إن الحاج يلف 7 مرات حوالين الكعبة، اسمه "طواف الإفاضة"، وبيعمله بعد الوقوف بعرفة ورمي الجمرات.</p>
+            <p><strong>🧒 نقول للطفل:</strong> "لما تلف حوالين الكعبة، كأنك بتقول: يا رب أنا بحبك، وإنت في قلبي، وكل حياتي حواليك."</p>
+        </div>
+        <div class="pillar en-content">
+            <h3>3. Tawaf 🌟</h3>
+            <p><strong>What does it mean?</strong> It’s when the pilgrim circles the Kaaba seven times, called "Tawaf al-Ifadah," performed after standing at Arafat and stoning the Jamarat.</p>
+            <p><strong>🧒 To a child:</strong> "When you circle the Kaaba, it’s like saying: O Allah, I love You, You’re in my heart, and my whole life revolves around You."</p>
+        </div>
+
+        <div class="pillar ar-content">
+            <h3>4. السعي بين الصفا والمروة 🌟</h3>
+            <p><strong>يعني إيه؟</strong> نمشي 7 مرات بين جبلين صغيرين اسمهم الصفا والمروة، نفتكر السيدة هاجر وهي بتدور على مية لابنها سيدنا إسماعيل.</p>
+            <p><strong>🧒 نقول للطفل:</strong> "ده درس في الصبر، إنك متيأسش حتى لو الأمور صعبة، وربنا دايمًا بيرزقنا."</p>
+        </div>
+        <div class="pillar en-content">
+            <h3>4. Sa’i between Safa and Marwah 🌟</h3>
+            <p><strong>What does it mean?</strong> Walking seven times between two small hills called Safa and Marwah, remembering Lady Hagar searching for water for her son, Prophet Ismail.</p>
+            <p><strong>🧒 To a child:</strong> "It’s a lesson in patience, teaching us not to give up even when things are tough, and Allah always provides for us."</p>
+        </div>
+
+        <div class="pillar ar-content">
+            <h3>ملخص سريع 🎯</h3>
+            <p>"الحج بيبدأ بالإحرام، لازم نروح عرفة، نطوف حوالين الكعبة، ونسعى بين الصفا والمروة." ✅</p>
+        </div>
+        <div class="pillar en-content">
+            <h3>Quick Summary 🎯</h3>
+            <p>"Hajj starts with Ihram, we must go to Arafat, circle the Kaaba, and walk between Safa and Marwah." ✅</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p class="ar-content">© 2025 عيدنا معاكم - فريق "رؤية وطن" - مدرسة الشهيد مدحت طلعت الرسمية للغات</p>
+        <p class="en-content">© 2025 Eid with You - "National Vision" Team - Martyr Medhat Talaat Official Language School</p>
+    </footer>
+
+    <script>
+        const translations = {
+            ar: {
+                pageTitle: "عيدنا معاكم - معلومات عن الحج",
+                logoAlt: "عيدنا معاكم",
+                toggleModeDark: "تبديل إلى Dark Mode",
+                toggleModeLight: "تبديل إلى Light Mode",
+                toggleLangEn: "تبديل إلى الإنجليزية",
+                toggleLangAr: "تبديل إلى العربية"
+            },
+            en: {
+                pageTitle: "Eid with You - Hajj Information",
+                logoAlt: "Eid with You",
+                toggleModeDark: "Switch to Dark Mode",
+                toggleModeLight: "Switch to Light Mode",
+                toggleLangEn: "Switch to English",
+                toggleLangAr: "Switch to Arabic"
+            }
+        };
+
+        function toggleMode(event) {
+            event.preventDefault();
+            const body = document.body;
+            const modeLink = event.target;
+            const currentLang = document.documentElement.lang;
+
+            body.classList.toggle('light-mode');
+            body.classList.toggle('dark-mode');
+
+            if (body.classList.contains('dark-mode')) {
+                modeLink.textContent = translations[currentLang].toggleModeLight;
+            } else {
+                modeLink.textContent = translations[currentLang].toggleModeDark;
+            }
+        }
+
+        function applyTranslations() {
+            const lang = document.documentElement.lang;
+            const trans = translations[lang];
+            document.title = trans.pageTitle;
+            document.querySelector('.header-title-circle img').alt = trans.logoAlt;
+            document.querySelector('.dropdown-content a[onclick="toggleMode(event)"]').textContent = document.body.classList.contains('dark-mode') ? trans.toggleModeLight : trans.toggleModeDark;
+            document.querySelector('.dropdown-content a[onclick="toggleLanguage(event)"]').textContent = lang === 'ar' ? trans.toggleLangEn : trans.toggleLangAr;
+        }
+
+        function toggleLanguage(event) {
+            event.preventDefault();
+            const htmlEl = document.documentElement;
+            const currentLang = htmlEl.lang;
+            const newLang = currentLang === 'ar' ? 'en' : 'ar';
+
+            htmlEl.lang = newLang;
+            htmlEl.dir = newLang === 'ar' ? 'rtl' : 'ltr';
+            applyTranslations();
+        }
+
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.classList.toggle('active');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const initialLang = document.documentElement.lang || 'ar';
+            document.documentElement.lang = initialLang;
+            document.documentElement.dir = initialLang === 'ar' ? 'rtl' : 'ltr';
+            applyTranslations();
+
+            const sidebarToggle = document.querySelector('.sidebar-toggle');
+            const sidebar = document.querySelector('.sidebar');
+
+            sidebarToggle.addEventListener('click', toggleSidebar);
+
+            sidebar.addEventListener('mouseleave', () => {
+                sidebar.classList.remove('active');
+            });
+
+            sidebar.addEventListener('mouseenter', () => {
+                sidebar.classList.add('active');
+            });
+
+            const sidebarLinks = document.querySelectorAll('.sidebar a');
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    sidebar.classList.remove('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

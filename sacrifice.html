@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عيدنا معاكم - شروط الأضحية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        body {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        html[lang="ar"] {
+            direction: rtl;
+        }
+
+        html[lang="en"] {
+            direction: ltr;
+        }
+
+        /* Light Mode */
+        body.light-mode {
+            background-color: #F5E6CC;
+            color: #4A3728;
+        }
+
+        body.light-mode .header, body.light-mode footer, body.light-mode .content-section {
+            background-color: #FFF8E7;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        body.light-mode .dropdown-content, body.light-mode .sidebar {
+            background-color: #FFF8E7;
+        }
+
+        body.light-mode .dropdown-content a, body.light-mode .sidebar a {
+            color: #4A3728;
+        }
+
+        body.light-mode .content-section h1 {
+            color: #4A3728;
+            font-size: 3.5rem;
+        }
+
+        body.light-mode .content-section p {
+            color: #4682B4;
+        }
+
+        body.light-mode .cta-btn {
+            background-color: #D4AF37;
+            color: #4A3728;
+        }
+
+        body.light-mode .header-title-circle {
+            background-color: #D4AF37;
+        }
+
+        body.light-mode .header-title {
+            color: #4A3728;
+            font-size: 1.5rem;
+        }
+
+        /* Dark Mode */
+        body.dark-mode {
+            background-color: #1A2526;
+            color: #F5F5DC;
+        }
+
+        body.dark-mode .header, body.dark-mode footer, body.dark-mode .content-section {
+            background-color: #2F3B3C;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        body.dark-mode .dropdown-content, body.dark-mode .sidebar {
+            background-color: #2F3B3C;
+        }
+
+        body.dark-mode .dropdown-content a, body.dark-mode .sidebar a {
+            color: #F5F5DC;
+        }
+
+        body.dark-mode .content-section h1 {
+            color: #F5F5DC;
+            font-size: 3.5rem;
+        }
+
+        body.dark-mode .content-section p {
+            color: #87CEEB;
+        }
+
+        body.dark-mode .cta-btn {
+            background-color: #E8C872;
+            color: #1A2526;
+        }
+
+        body.dark-mode .header-title-circle {
+            background-color: #E8C872;
+        }
+
+        body.dark-mode .header-title {
+            color: #F5F5DC;
+            font-size: 1.5rem;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-title-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: float 4s ease-in-out infinite;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .header-title-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .header-title {
+            transition: all 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .header-title:hover {
+            box-shadow: 0 0 15px rgba(232, 200, 114, 0.7);
+            background-color: rgba(232, 200, 114, 0.1);
+        }
+
+        .egypt-flag {
+            display: inline-block;
+            margin-right: 5px;
+            vertical-align: middle;
+            width: 32px;
+            height: 24px;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); box-shadow: 0 0 15px rgba(255, 215, 0, 0.5); }
+            50% { transform: translateY(-10px); box-shadow: 0 0 25px rgba(255, 215, 0, 0.8); }
+        }
+
+        /* Sidebar */
+        .sidebar-container {
+            position: relative;
+        }
+
+        .sidebar-toggle {
+            cursor: pointer;
+            font-size: 2rem;
+            padding: 10px;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 110px;
+            right: 0;
+            width: 250px;
+            height: calc(100% - 110px);
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+            z-index: 900;
+            border-radius: 0 10px 10px 0;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            overflow-y: auto;
+        }
+
+        .sidebar.active {
+            transform: translateX(0);
+        }
+
+        .sidebar a {
+            padding: 15px 20px;
+            text-decoration: none;
+            display: block;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            text-align: right;
+        }
+
+        html[lang="en"] .sidebar a {
+            text-align: left;
+        }
+
+        .sidebar a:hover {
+            background-color: #D4AF37;
+            color: #4A3728;
+        }
+
+        .dark-mode .sidebar a:hover {
+            background-color: #E8C872;
+            color: #1A2526;
+        }
+
+        .sidebar a.active {
+            background-color: rgba(232, 200, 114, 0.3);
+            font-weight: bold;
+        }
+
+        /* Settings */
+        .settings-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        html[lang="en"] .settings-container {
+            right: auto;
+            left: 20px;
+        }
+
+        .settings {
+            cursor: pointer;
+            font-size: 1.8rem;
+            padding: 10px;
+            display: inline-block;
+            background-color: #D4AF37;
+            color: #4A3728;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .dark-mode .settings {
+            background-color: #E8C872;
+            color: #1A2526;
+        }
+
+        .settings:hover {
+            transform: scale(1.1);
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            min-width: 180px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            border-radius: 5px;
+            transform: translateY(-100%);
+            margin-bottom: 10px;
+        }
+
+        html[lang="ar"] .dropdown-content {
+            right: 0;
+            left: auto;
+        }
+
+        html[lang="en"] .dropdown-content {
+            left: 0;
+            right: auto;
+        }
+
+        .dropdown-content a {
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        html[lang="ar"] .dropdown-content a {
+            text-align: right;
+        }
+
+        html[lang="en"] .dropdown-content a {
+            text-align: left;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #D4AF37;
+            color: #4A3728;
+        }
+
+        .dark-mode .dropdown-content a:hover {
+            background-color: #E8C872;
+            color: #1A2526;
+        }
+
+        .dropdown:hover .dropdown-content,
+        .dropdown-content:hover {
+            display: block;
+        }
+
+        .content-section {
+            margin: 30px;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .content-section h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .content-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+            color: #E8C872;
+        }
+
+        .content-section p {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .condition {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: rgba(232, 200, 114, 0.1);
+            text-align: right;
+        }
+
+        html[lang="en"] .condition {
+            text-align: left;
+        }
+
+        .condition h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #E8C872;
+        }
+
+        .condition .emoji {
+            font-size: 1.5em;
+            margin-left: 5px;
+            vertical-align: middle;
+        }
+
+        html[lang="en"] .condition .emoji {
+            margin-left: 0;
+            margin-right: 5px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 1.2rem;
+        }
+
+        th, td {
+            border: 1px solid #D4AF37;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .dark-mode th, .dark-mode td {
+            border-color: #E8C872;
+        }
+
+        th {
+            background-color: #D4AF37;
+            color: #4A3728;
+        }
+
+        .dark-mode th {
+            background-color: #E8C872;
+            color: #1A2526;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            width: 100%;
+            font-size: 1.2rem;
+        }
+
+        .ar-content {
+            display: block;
+        }
+
+        .en-content {
+            display: none;
+        }
+
+        html[lang="en"] .ar-content {
+            display: none;
+        }
+
+        html[lang="en"] .en-content {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .content-section h1 {
+                font-size: 2.5rem;
+            }
+            .content-section p {
+                font-size: 1.2rem;
+            }
+            .header-title-circle {
+                width: 70px;
+                height: 70px;
+            }
+            .header-title {
+                font-size: 1.2rem;
+            }
+            .content-section h2 {
+                font-size: 2rem;
+            }
+            .content-section h3 {
+                font-size: 1.5rem;
+            }
+            .content-section p {
+                font-size: 1.1rem;
+            }
+            .dropdown-content, .sidebar {
+                min-width: 180px;
+            }
+            .egypt-flag {
+                width: 28px;
+                height: 21px;
+            }
+            .sidebar {
+                top: 90px;
+                height: calc(100% - 90px);
+            }
+            table {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .content-section h1 {
+                font-size: 2rem;
+            }
+            .content-section p {
+                font-size: 1rem;
+            }
+            .header-title-circle {
+                width: 60px;
+                height: 60px;
+            }
+            .header-title {
+                font-size: 1rem;
+            }
+            .content-section h2 {
+                font-size: 1.5rem;
+            }
+            .content-section h3 {
+                font-size: 1.3rem;
+            }
+            .content-section p {
+                font-size: 1rem;
+            }
+            .dropdown-content, .sidebar {
+                min-width: 160px;
+            }
+            .egypt-flag {
+                width: 24px;
+                height: 18px;
+            }
+            .sidebar {
+                width: 200px;
+                top: 80px;
+                height: calc(100% - 80px);
+            }
+            .dropdown-content {
+                min-width: 140px;
+            }
+            table {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body class="dark-mode">
+    <!-- Header -->
+    <header class="header">
+        <div class="header-logo">
+            <div class="header-title-circle">
+                <img src="logo_2.jpg" alt="عيدنا معاكم" onerror="this.src='fallback-logo.png';">
+            </div>
+            <div class="header-title">
+                <span class="ar-content">عيدنا معاكم</span>
+                <span class="en-content">Eid with You</span>
+            </div>
+        </div>
+        <div class="sidebar-container">
+            <div class="sidebar-toggle" role="button" aria-label="Toggle Sidebar" tabindex="0">
+                <span>☰</span>
+            </div>
+            <div class="sidebar">
+              <div class="ar-content">
+                  <a href="index.html">الصفحة الرئيسية</a>
+                  <a href="prayers.html" class="active">أدعية العيد</a>
+                  <a href="hajj.html">معلومات عن الحج</a>
+                  <a href="sacrifice.html">شروط الأضحية</a>
+                  <a href="https://e3rafbaladak.com/">المبادرة</a>
+              </div>
+              <div class="en-content">
+                  <a href="index.html">Home</a>
+                  <a href="prayers.html" class="active">Eid Prayers</a>
+                  <a href="hajj.html">Hajj Information</a>
+                  <a href="sacrifice.html">Sacrifice Conditions</a>
+                  <a href="https://e3rafbaladak.com/">Initiative</a>
+              </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Settings -->
+    <div class="settings-container">
+        <div class="dropdown">
+            <div class="settings" role="button" aria-label="Open Settings Menu" tabindex="0">
+                <span>⚙️</span>
+            </div>
+            <div class="dropdown-content">
+                <a href="#" onclick="toggleMode(event)">تبديل إلى Light Mode</a>
+                <a href="#" onclick="toggleLanguage(event)">تبديل إلى الإنجليزي</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sacrifice Conditions Section -->
+    <section class="content-section">
+        <h1 class="ar-content">شروط الأضحية 🐑</h1>
+        <h1 class="en-content">Conditions of the Sacrifice 🐑</h1>
+        <p class="ar-content">شرح مبسط للطلبة عن شروط الأضحية: إمتى نضحي؟ بنضحي بإيه؟ وإزاي تكون الأضحية صح؟ 🎉</p>
+        <p class="en-content">A simple explanation for students about the conditions of the sacrifice: When do we sacrifice? What do we sacrifice? And how should the sacrifice be? 🎉</p>
+
+        <div class="condition ar-content">
+            <h3>إمتى ينفع نضحي؟ 📅</h3>
+            <p>لازم تكون بعد صلاة العيد مباشرة.</p>
+            <p>لو ضحّيت قبل الصلاة → مش أضحية وبتتحسب صدقة بس.</p>
+        </div>
+        <div class="condition en-content">
+            <h3>When can we sacrifice? 📅</h3>
+            <p>It must be after the Eid prayer directly.</p>
+            <p>If you sacrifice before the prayer, it’s not considered a sacrifice, only charity.</p>
+        </div>
+
+        <div class="condition ar-content">
+            <h3>أنهي حيوان ينفع أضحي بيه؟ 🐄🐏</h3>
+            <p>فيه 4 أنواع بس:</p>
+            <ul>
+                <li>الضأن (الخروف)</li>
+                <li>المعز (الماعز)</li>
+                <li>البقر (الجاموس كمان ينفع)</li>
+                <li>الجمال (الإبل)</li>
+            </ul>
+        </div>
+        <div class="condition en-content">
+            <h3>Which animals can be sacrificed? 🐄🐏</h3>
+            <p>Only 4 types are allowed:</p>
+            <ul>
+                <li>Sheep</li>
+                <li>Goats</li>
+                <li>Cattle (buffalo is also acceptable)</li>
+                <li>Camels</li>
+            </ul>
+        </div>
+
+        <div class="condition ar-content">
+            <h3>شروط لازم تتوفر في الأضحية 🎯</h3>
+            <p><strong>1. السن المناسب:</strong></p>
+            <table>
+                <tr><th>النوع</th><th>أقل سن</th></tr>
+                <tr><td>الخروف</td><td>6 شهور (بس لازم شكله كبير شبه سنة)</td></tr>
+                <tr><td>الماعز</td><td>سنة كاملة</td></tr>
+                <tr><td>البقر</td><td>سنتين</td></tr>
+                <tr><td>الجمل</td><td>5 سنين</td></tr>
+            </table>
+            <p><strong>2. تكون سليمة ومعندهاش عيوب واضحة:</strong></p>
+            <p>يعني ماينفعش:</p>
+            <ul>
+                <li>🐑 تكون عوراء (عينها فيها مشكلة)</li>
+                <li>🐑 تكون عرجاء (بتعرج جامد)</li>
+                <li>🐑 تكون مريضة أو هزيلة جدًا</li>
+            </ul>
+            <p><strong>3. ملكك أو مأذون ليك تضحي بيها:</strong></p>
+            <p>يعني لازم تكون:</p>
+            <ul>
+                <li>إنت اللي شاريها</li>
+                <li>أو أبوك/أمك/حد قالك "ضحّي بيها عني"</li>
+            </ul>
+            <p><strong>4. تتضحى في الوقت الصح:</strong></p>
+            <p>من بعد صلاة العيد لحد غروب شمس اليوم الرابع من العيد (يعني 13 ذو الحجة).</p>
+        </div>
+        <div class="condition en-content">
+            <h3>Conditions the sacrifice must meet 🎯</h3>
+            <p><strong>1. Appropriate age:</strong></p>
+            <table>
+                <tr><th>Type</th><th>Minimum Age</th></tr>
+                <tr><td>Sheep</td><td>6 months (but must look as big as a year-old)</td></tr>
+                <tr><td>Goat</td><td>1 full year</td></tr>
+                <tr><td>Cattle</td><td>2 years</td></tr>
+                <tr><td>Camel</td><td>5 years</td></tr>
+            </table>
+            <p><strong>2. Must be free of obvious defects:</strong></p>
+            <p>It cannot be:</p>
+            <ul>
+                <li>🐑 Blind or with an eye problem</li>
+                <li>🐑 Lame (limping badly)</li>
+                <li>🐑 Sick or extremely thin</li>
+            </ul>
+            <p><strong>3. Must be owned by you or you’re authorized to sacrifice it:</strong></p>
+            <p>It must be:</p>
+            <ul>
+                <li>Purchased by you</li>
+                <li>Or someone like your parents or another person told you, “Sacrifice it on my behalf”</li>
+            </ul>
+            <p><strong>4. Must be sacrificed at the right time:</strong></p>
+            <p>From after the Eid prayer until sunset on the fourth day of Eid (13th of Dhul-Hijjah).</p>
+        </div>
+
+        <div class="condition ar-content">
+            <h3>مين بياكل منها؟ 🍖</h3>
+            <p>صاحب الأضحية (ياكل منها شوية)</p>
+            <p>الفقراء والمحتاجين (ده الأساس)</p>
+            <p>ممكن تتوزع كمان على الجيران أو أصحابك</p>
+        </div>
+        <div class="condition en-content">
+            <h3>Who eats from it? 🍖</h3>
+            <p>The person offering the sacrifice (eats a little)</p>
+            <p>The poor and needy (this is the main purpose)</p>
+            <p>It can also be shared with neighbors or friends</p>
+        </div>
+
+        <div class="condition ar-content">
+            <h3>ليه بنضحي أصلاً؟ ❤</h3>
+            <p>إحياء لسُنّة سيدنا إبراهيم عليه السلام، وطاعة لله سبحانه وتعالى، ومشاركة الناس الفرحة.</p>
+        </div>
+        <div class="condition en-content">
+            <h3>Why do we sacrifice? ❤</h3>
+            <p>To revive the Sunnah of Prophet Ibrahim (peace be upon him), obey Allah, and share joy with others.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p class="ar-content">© 2025 عيدنا معاكم - فريق "رؤية وطن" - مدرسة الشهيد مدحت طلعت الرسمية للغات</p>
+        <p class="en-content">© 2025 Eid with You - "National Vision" Team - Martyr Medhat Talaat Official Language School</p>
+    </footer>
+
+    <script>
+        const translations = {
+            ar: {
+                pageTitle: "عيدنا معاكم - شروط الأضحية",
+                logoAlt: "عيدنا معاكم",
+                toggleModeDark: "تبديل إلى Dark Mode",
+                toggleModeLight: "تبديل إلى Light Mode",
+                toggleLangEn: "تبديل إلى الإنجليزية",
+                toggleLangAr: "تبديل إلى العربية"
+            },
+            en: {
+                pageTitle: "Eid with You - Sacrifice Conditions",
+                logoAlt: "Eid with You",
+                toggleModeDark: "Switch to Dark Mode",
+                toggleModeLight: "Switch to Light Mode",
+                toggleLangEn: "Switch to English",
+                toggleLangAr: "Switch to Arabic"
+            }
+        };
+
+        function toggleMode(event) {
+            event.preventDefault();
+            const body = document.body;
+            const modeLink = event.target;
+            const currentLang = document.documentElement.lang;
+
+            body.classList.toggle('light-mode');
+            body.classList.toggle('dark-mode');
+
+            if (body.classList.contains('dark-mode')) {
+                modeLink.textContent = translations[currentLang].toggleModeLight;
+            } else {
+                modeLink.textContent = translations[currentLang].toggleModeDark;
+            }
+        }
+
+        function applyTranslations() {
+            const lang = document.documentElement.lang;
+            const trans = translations[lang];
+            document.title = trans.pageTitle;
+            document.querySelector('.header-title-circle img').alt = trans.logoAlt;
+            document.querySelector('.dropdown-content a[onclick="toggleMode(event)"]').textContent = document.body.classList.contains('dark-mode') ? trans.toggleModeLight : trans.toggleModeDark;
+            document.querySelector('.dropdown-content a[onclick="toggleLanguage(event)"]').textContent = lang === 'ar' ? trans.toggleLangEn : trans.toggleLangAr;
+        }
+
+        function toggleLanguage(event) {
+            event.preventDefault();
+            const htmlEl = document.documentElement;
+            const currentLang = htmlEl.lang;
+            const newLang = currentLang === 'ar' ? 'en' : 'ar';
+
+            htmlEl.lang = newLang;
+            htmlEl.dir = newLang === 'ar' ? 'rtl' : 'ltr';
+            applyTranslations();
+        }
+
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.classList.toggle('active');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const initialLang = document.documentElement.lang || 'ar';
+            document.documentElement.lang = initialLang;
+            document.documentElement.dir = initialLang === 'ar' ? 'rtl' : 'ltr';
+            applyTranslations();
+
+            const sidebarToggle = document.querySelector('.sidebar-toggle');
+            const sidebar = document.querySelector('.sidebar');
+
+            sidebarToggle.addEventListener('click', toggleSidebar);
+
+            sidebar.addEventListener('mouseleave', () => {
+                sidebar.classList.remove('active');
+            });
+
+            sidebar.addEventListener('mouseenter', () => {
+                sidebar.classList.add('active');
+            });
+
+            const sidebarLinks = document.querySelectorAll('.sidebar a');
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    sidebar.classList.remove('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
